@@ -1,5 +1,7 @@
 <template>
   <div>
+    <NavBar />
+
     <h1>{{ user.name }}</h1>
     <h2>Posts</h2>
     <ul>
@@ -11,6 +13,8 @@
 </template>
 
 <script>
+import NavBar from './NavBar.vue';
+
 export default {
   computed: {
     user() {
@@ -27,6 +31,9 @@ export default {
     const userId = parseInt(this.$route.params.id);
     this.$store.dispatch('fetchAlbums', userId);
     this.$store.dispatch('fetchPosts', userId);
+  },
+  components: {
+    NavBar: NavBar,
   },
 };
 </script>

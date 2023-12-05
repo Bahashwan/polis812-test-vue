@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Users</h1>
+    <h4>Нажмите на имя пользователя, чтобы увидеть больше информации.</h4>
     <ul>
       <li v-for="user in users" :key="user.id" @click="navigateToUser(user.id)">
         {{ user.name }}
@@ -20,6 +21,7 @@ export default {
     navigateToUser(userId) {
       this.$router.push(`/user/${userId}`);
     },
+    
   },
   mounted() {
     this.$store.dispatch('fetchUsers');
