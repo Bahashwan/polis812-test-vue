@@ -11,6 +11,7 @@
 <script>
 import NavBar from './NavBar.vue';
 import AlbumCards from './AlbumCards.vue';
+import {gsap} from 'gsap'
 export default {
   computed: {
     user() {
@@ -24,7 +25,15 @@ export default {
   },
   created() {
     const userId = parseInt(this.$route.params.id);
-    this.$store.dispatch('fetchAlbums', userId);
+    this.$store.dispatch('fetchAlbums', userId).then(() => {
+      const items = document.querySelectorAll('.albumItem');
+
+      gsap.set(items, { opacity: 0, y: -20 });
+
+      gsap.utils.toArray(items).forEach((item, index) => {
+        gsap.to(item, { duration: 0.5, opacity: 1, y: 0, delay: index * 0.1 });
+      });
+    });
   },
   components: {
     NavBar: NavBar,
