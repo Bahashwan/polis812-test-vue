@@ -2,19 +2,20 @@
   <div>
     <NavBar />
 
-    <h1>{{ user.name }}</h1>
-    <h2>Posts</h2>
-    <ul>
+    <h1 class="textCenter">{{ user.name }}</h1>
+    <h2 class="textCenter">Posts</h2>
+    <!-- <ul>
       <li v-for="post in posts" :key="post.id">
         {{ post.title }}
       </li>
-    </ul>
+    </ul> -->
+    <PostsCards :posts="posts" :user_name="user.name" />
   </div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue';
-
+import PostsCards from './PostsCards.vue';
 export default {
   computed: {
     user() {
@@ -34,6 +35,12 @@ export default {
   },
   components: {
     NavBar: NavBar,
+    PostsCards: PostsCards,
   },
 };
 </script>
+<style lang="scss" scoped>
+.textCenter {
+  text-align: center;
+}
+</style>

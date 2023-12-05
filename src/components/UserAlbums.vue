@@ -1,17 +1,16 @@
 <template>
   <div>
     <NavBar />
-    <h1>{{ user.name }}</h1>
-    <h2>Albums</h2>
-    <li v-for="album in albums" :key="album.id">
-      {{ album.title }}
-    </li>
+    <h1 class="textCenter">{{ user.name }}</h1>
+    <h2 class="textCenter">Albums</h2>
+
+    <AlbumCards :albums="albums" :user_name="user.name" />
   </div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue';
-
+import AlbumCards from './AlbumCards.vue';
 export default {
   computed: {
     user() {
@@ -29,6 +28,17 @@ export default {
   },
   components: {
     NavBar: NavBar,
+    AlbumCards: AlbumCards,
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+.textCenter {
+  text-align: center;
+}
+
+
+
+</style>

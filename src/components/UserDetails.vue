@@ -2,26 +2,34 @@
   <div>
     <NavBar />
     <div>
-      <h1>{{ user.name }}</h1>
-      <h2 @click="navigateToUserAlbums">Albums</h2>
-      <h4>Нажмите на "Albums", чтобы перейти на страницу альбомов.</h4>
-      <li v-for="album in albums" :key="album.id">
+      <h1 class="textCenter">{{ user.name }}</h1>
+      <h2 @click="navigateToUserAlbums" class="textCenter">Albums</h2>
+      <h4 class="textCenter">
+        Нажмите на "Albums", чтобы перейти на страницу альбомов.
+      </h4>
+      <!-- <li v-for="album in albums" :key="album.id">
         {{ album.title }}
-      </li>
-      <h2 @click="navigateToUserPosts">Posts</h2>
-      <h4>Нажмите на "Posts", чтобы перейти на страницу постов.</h4>
+      </li> -->
+      <MiniAlbumsCards :albums="albums" :user_name="user.name" />
+      <h2 @click="navigateToUserPosts" class="textCenter">Posts</h2>
+      <h4 class="textCenter">
+        Нажмите на "Posts", чтобы перейти на страницу постов.
+      </h4>
 
-      <ul>
+      <!-- <ul>
         <li v-for="post in posts" :key="post.id">
           {{ post.title }}
         </li>
-      </ul>
+      </ul> -->
+      <MiniPostsCards :posts="posts" :user_name="user.name" />
     </div>
   </div>
 </template>
 
 <script>
 import NavBar from './NavBar.vue';
+import MiniAlbumsCards from './MiniAlbumsCards.vue';
+import MiniPostsCards from './MiniPostsCards.vue';
 export default {
   methods: {
     navigateToUserAlbums() {
@@ -47,6 +55,8 @@ export default {
   },
   components: {
     NavBar: NavBar,
+    MiniAlbumsCards: MiniAlbumsCards,
+    MiniPostsCards: MiniPostsCards,
   },
 
   created() {
@@ -56,3 +66,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.textCenter {
+  text-align: center;
+}
+</style>
